@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { Form, Help, Input, Label } from '../components/common/form'
+import { Form, Input } from '../components/common/form'
 
 const SignUpPage = (props) => {
     return (
@@ -31,10 +31,9 @@ const SignUpPage = (props) => {
                     values
                 }) => (
                     <Form onSubmit={handleSubmit}>
-                        <Label htmlFor="email">Email address</Label>
-                        <Help id="email-help">E.g. sean@m.cp</Help>
                         <Input
-                            aria-describedby="email-help"
+                            label="Email address"
+                            help="E.g. sean@m.cp"
                             id="email"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -42,11 +41,8 @@ const SignUpPage = (props) => {
                             value={values.email}
                             error={errors.email}
                         />
-                        {errors.email && (
-                            <label htmlFor="email">{errors.email}</label>
-                        )}
-                        <Label htmlFor="password">Password</Label>
                         <Input
+                            label="Password"
                             id="password"
                             onBlur={handleBlur}
                             onChange={handleChange}
@@ -54,9 +50,6 @@ const SignUpPage = (props) => {
                             value={values.password}
                             error={errors.password}
                         />
-                        {errors.password && (
-                            <label htmlFor="password">{errors.password}</label>
-                        )}
                         <button
                             disabled={!dirty || isSubmitting}
                             type="reset"

@@ -1,29 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styled, { css } from 'styled-components';
 
-const SInput = styled.input`
-    border: 1px solid gray;
-    font-family: inherit;
-    font-size: inherit;
-    padding: 0.5rem;
+import { BareInput, Error, Label, Help } from './index';
 
-    ${(props) =>
-        props.error &&
-        css`
-            background: pink;
-            border-color: red;
-        `}
-`;
-
-const Input = (props) => {
-    return <SInput {...props} />;
+const Input = ({ error, help, hideLabel, id, label, ...props }) => {
+    const bareInputProps = {
+        ...props,
+        'aria-describedby': help ? `${id}-help` : null,
+        'aria-label': hideLabel ? label : null,
+        hasError: error ? true : false
+    };
+    return (
+        <React.Fragment>
+            {!hideLabel && (
+                <Label htmlFor={id} id={`${id}-label`}>
+                    {label}
+                </Label>
+            )}
+            {help && <Help id={`${id}-help`}>{help}</Help>}
+            <BareInput id={id} {...bareInputProps} />
+            {error && <Error>{error}</Error>}
+        </React.Fragment>
+    );
 };
 
 Input.propTypes = {
-    'aria-label': PropTypes.string,
-    'aria-labelledby': PropTypes.string,
+    hideLabel: PropTypes.bool,
     id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     type: PropTypes.string.isRequired
 };
 
