@@ -7,7 +7,7 @@ const Header = (props) => {
     const links = [];
     for (const page in ROUTES) {
         links.push(
-            <li>
+            <li key={page}>
                 <Link to={ROUTES[page]}>{page}</Link>
             </li>
         );
