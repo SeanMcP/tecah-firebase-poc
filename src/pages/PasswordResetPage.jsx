@@ -48,7 +48,7 @@ const PasswordResetPage = (props) => {
                     <Form onSubmit={handleSubmit}>
                         <Input
                             label="Email address"
-                            help="The email address associated with your account"
+                            help="Enter the email address associated with your account"
                             id="email"
                             onBlur={handleBlur}
                             onChange={handleChange}
