@@ -7,7 +7,7 @@ import AccountPage from '../pages/AccountPage';
 import AdminPage from '../pages/AdminPage';
 import HomePage from '../pages/HomePage';
 import LandingPage from '../pages/LandingPage';
-import PasswordForgetPage from '../pages/PasswordForgetPage';
+import PasswordResetPage from '../pages/PasswordResetPage';
 import SignInPage from '../pages/SignInPage';
 import SignUpPage from '../pages/SignUpPage';
 
@@ -19,8 +19,8 @@ const Router = (props) => {
             <Route path={ROUTES.ADMIN} component={AdminPage} />
             <Route path={ROUTES.HOME} component={HomePage} />
             <Route
-                path={ROUTES.PASSWORD_FORGET}
-                component={PasswordForgetPage}
+                path={ROUTES.PASSWORD_RESET}
+                component={PasswordResetPage}
             />
             <Route path={ROUTES.SIGN_IN} component={SignInPage} />
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />

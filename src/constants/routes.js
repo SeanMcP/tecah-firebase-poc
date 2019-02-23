@@ -5,5 +5,5 @@ export default {
     HOME: '/home',
     ACCOUNT: '/account',
     ADMIN: '/admin',
-    PASSWORD_FORGET: '/pw-forget'
+    PASSWORD_RESET: '/password-reset'
 };
