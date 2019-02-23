@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -97,6 +97,10 @@ const SignUpPage = (props) => {
                     </Form>
                 )}
             </Formik>
+            <p>
+                Already have an account?{' '}
+                <Link to={ROUTES.SIGN_IN}>Sign in</Link>!
+            </p>
         </div>
     );
 };

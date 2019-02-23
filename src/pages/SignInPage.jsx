@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
@@ -84,6 +84,13 @@ const SignInPage = (props) => {
                     </Form>
                 )}
             </Formik>
+            <p>
+                Don't have an account? <Link to={ROUTES.SIGN_UP}>Sign up</Link>!
+            </p>
+            <p>
+                Can't remember?{' '}
+                <Link to={ROUTES.PASSWORD_RESET}>Reset your password</Link>.
+            </p>
         </div>
     );
 };
