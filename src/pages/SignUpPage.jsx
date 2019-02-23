@@ -1,10 +1,26 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom'
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import { Form, Input } from '../components/common/form'
+import ROUTES from '../constants/routes'
+import { FirebaseContext } from '../firebase'
+
+import { Form, Input } from '../components/common/form';
 
 const SignUpPage = (props) => {
+    const firebase = React.useContext(FirebaseContext)
+    const handleSubmit = (values) => {
+        const { email, password } = values;
+        firebase
+            .doCreateUserWithEmailAndPassword(email, password)
+            .then(() => {
+                props.history.push(ROUTES.HOME)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    };
     return (
         <div>
             <h2>Sign Up</h2>
@@ -13,6 +29,7 @@ const SignUpPage = (props) => {
                     email: '',
                     password: ''
                 }}
+                onSubmit={handleSubmit}
                 validationSchema={Yup.object().shape({
                     email: Yup.string()
                         .email('Must be a valid email')
@@ -67,4 +84,4 @@ const SignUpPage = (props) => {
     );
 };
 
-export default SignUpPage;
+export default withRouter(SignUpPage);
