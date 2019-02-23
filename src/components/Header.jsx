@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 import ROUTES from '../constants/routes';
 
+import SignOutButton from './common/SignOutButton'
+
 const Header = (props) => {
     const links = [];
     for (const page in ROUTES) {
@@ -16,7 +18,10 @@ const Header = (props) => {
         <header>
             <h1>TECAH</h1>
             <nav>
-                <ul>{links}</ul>
+                <ul>
+                    {links}
+                    <li><SignOutButton /></li>
+                </ul>
             </nav>
         </header>
     );
