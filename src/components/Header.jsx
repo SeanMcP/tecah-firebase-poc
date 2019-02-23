@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import ROUTES from '../constants/routes';
 
 import SignOutButton from './common/SignOutButton'
+import AuthUserContext from '../context/AuthUserContext';
 
 const Header = (props) => {
+    const authUser = React.useContext(AuthUserContext);
     const links = [];
     for (const page in ROUTES) {
         links.push(
@@ -20,7 +22,7 @@ const Header = (props) => {
             <nav>
                 <ul>
                     {links}
-                    <li><SignOutButton /></li>
+                    {authUser && <li><SignOutButton /></li>}
                 </ul>
             </nav>
         </header>
