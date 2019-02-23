@@ -1,7 +1,7 @@
 import React from 'react';
 import { FirebaseContext } from '../firebase';
 
-const useAuth = () => {
+const useAuthUser = () => {
     const [authUser, setAuthUser] = React.useState(null);
     const firebase = React.useContext(FirebaseContext);
     const listenForAuth = () => {
@@ -16,4 +16,4 @@ const useAuth = () => {
     return { authUser };
 };
 
-export default useAuth;
+export default useAuthUser;

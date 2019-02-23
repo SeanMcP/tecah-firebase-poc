@@ -4,10 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import Header from './Header';
 import Router from './Router';
 import AuthUserContext from '../context/AuthUserContext';
-import useAuth from '../hooks/useAuth';
+import useAuthUser from '../hooks/useAuthUser';
 
 const App = () => {
-    const { authUser } = useAuth();
+    const { authUser } = useAuthUser();
     return (
         <AuthUserContext.Provider value={authUser}>
             <BrowserRouter>
