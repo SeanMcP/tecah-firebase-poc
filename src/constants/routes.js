@@ -1,7 +1,7 @@
 export default {
     LANDING: '/',
-    SIGN_UP: '/signup',
-    SIGN_IN: '/signin',
+    SIGN_UP: '/sign-up',
+    SIGN_IN: '/sign-in',
     HOME: '/home',
     ACCOUNT: '/account',
     ADMIN: '/admin',
