@@ -1,21 +1,37 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 import { Formik } from 'formik';
 import * as Yup from 'yup';
 
-import ROUTES from '../constants/routes'
-import { FirebaseContext } from '../firebase'
+import ROUTES from '../constants/routes';
+import { FirebaseContext } from '../firebase';
 
 import { Form, Input } from '../components/common/form';
 
+const initialValues = {
+    email: '',
+    password: '',
+    passwordConfirmation: ''
+};
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Must be a valid email')
+        .required('Required'),
+    password: Yup.string().required('Required'),
+    passwordConfirmation: Yup.string()
+        .oneOf([Yup.ref('password', null)], 'Passwords must match')
+        .required('Passwords must match')
+});
+
 const SignUpPage = (props) => {
-    const firebase = React.useContext(FirebaseContext)
+    const firebase = React.useContext(FirebaseContext);
     const handleSubmit = (values) => {
         const { email, password } = values;
         firebase
             .doCreateUserWithEmailAndPassword(email, password)
             .then(() => {
-                props.history.push(ROUTES.HOME)
+                props.history.push(ROUTES.HOME);
             })
             .catch((error) => {
                 console.log(error);
@@ -25,17 +41,9 @@ const SignUpPage = (props) => {
         <div>
             <h2>Sign Up</h2>
             <Formik
-                initialValues={{
-                    email: '',
-                    password: ''
-                }}
+                initialValues={initialValues}
                 onSubmit={handleSubmit}
-                validationSchema={Yup.object().shape({
-                    email: Yup.string()
-                        .email('Must be a valid email')
-                        .required('Required'),
-                    password: Yup.string().required('Required')
-                })}
+                validationSchema={validationSchema}
             >
                 {({
                     dirty,
@@ -66,6 +74,15 @@ const SignUpPage = (props) => {
                             type="password"
                             value={values.password}
                             error={errors.password}
+                        />
+                        <Input
+                            label="Confirm password"
+                            id="passwordConfirmation"
+                            onBlur={handleBlur}
+                            onChange={handleChange}
+                            type="password"
+                            value={values.passwordConfirmation}
+                            error={errors.passwordConfirmation}
                         />
                         <button
                             disabled={!dirty || isSubmitting}
