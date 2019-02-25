@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { FirebaseContext } from '../firebase';
+import ROLES from '../constants/roles';
 import ROUTES from '../constants/routes';
 
 const useAuthorization = (condition = () => true, history) => {
@@ -20,4 +21,6 @@ const useAuthorization = (condition = () => true, history) => {
 
 export default useAuthorization;
 
-export const isUser = auth => !!auth
+export const isAdmin = (authUser) =>
+    authUser && authUser.roles.includes(ROLES.ADMIN);
+export const isUser = (authUser) => !!authUser;
