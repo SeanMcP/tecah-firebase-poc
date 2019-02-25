@@ -22,5 +22,5 @@ const useAuthorization = (condition = () => true, history) => {
 export default useAuthorization;
 
 export const isAdmin = (authUser) =>
-    authUser && authUser.roles.includes(ROLES.ADMIN);
+    authUser && authUser.roles && authUser.roles.includes(ROLES.ADMIN);
 export const isUser = (authUser) => !!authUser;
