@@ -30,6 +30,9 @@ const SignUpPage = (props) => {
         const { email, password } = values;
         firebase
             .doCreateUserWithEmailAndPassword(email, password)
+            .then(authUser => {
+                return firebase.user(authUser.user.uid)
+            })
             .then(() => {
                 props.history.push(ROUTES.HOME);
             })
